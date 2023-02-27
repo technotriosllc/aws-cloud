@@ -1,0 +1,160 @@
+  {
+	"widgets": [{
+		"height": 6,
+		"width": 12,
+		"y": 0,
+		"x": 0,
+		"type": "metric",
+		"properties": {
+			"metrics": [
+				[{
+					"expression": "m0r0+m1",
+					"label": "gerrit - IOps",
+					"id": "e1",
+					"region": "us-west-2"
+				}],
+				["AWS/EBS", "VolumeReadOps", "VolumeId", "vol-05369d753930426b4", {
+					"id": "m0r0",
+					"label": "gerrit - VolumeReadOps",
+					"yAxis": "left"
+				}],
+				[".", "VolumeWriteOps", ".", ".", {
+					"label": "gerrit - VolumeWriteOps",
+					"id": "m1"
+				}]
+			],
+			"region": "us-west-2",
+			"title": "Gerrit Disk Ops",
+			"copilot": true,
+			"view": "timeSeries",
+			"stacked": false,
+			"stat": "Sum",
+			"period": 300,
+			"yAxis": {
+				"left": {
+					"min": 0
+				}
+			}
+		}
+	}, {
+		"height": 6,
+		"width": 12,
+		"y": 0,
+		"x": 12,
+		"type": "metric",
+		"properties": {
+			"metrics": [
+				["AWS/EBS", "BurstBalance", "VolumeId", "vol-05369d753930426b4", {
+					"id": "m2"
+				}]
+			],
+			"region": "us-west-2",
+			"title": "Gerrit Burst Balance",
+			"copilot": true,
+			"view": "timeSeries",
+			"stacked": false,
+			"stat": "Minimum",
+			"period": 300,
+			"yAxis": {
+				"left": {
+					"min": 0
+				}
+			}
+		}
+	}, {
+		"height": 6,
+		"width": 12,
+		"y": 6,
+		"x": 0,
+		"type": "metric",
+		"properties": {
+			"view": "timeSeries",
+			"stacked": false,
+			"metrics": [
+				["AWS/EC2", "CPUUtilization", "InstanceId", "i-021318e2db48ddbb4"]
+			],
+			"region": "us-west-2",
+			"title": "Gerrit CPU",
+			"period": 300,
+			"yAxis": {
+				"left": {
+					"min": 0
+				}
+			}
+		}
+	}, {
+		"height": 15,
+		"width": 24,
+		"y": 12,
+		"x": 0,
+		"type": "explorer",
+		"properties": {
+			"metrics": [{
+				"metricName": "CPUUtilization",
+				"resourceType": "AWS::EC2::Instance",
+				"stat": "Average"
+			}],
+			"labels": [{
+				"key": "Name",
+				"value": "jenkins-agent"
+			}, {
+				"key": "Name",
+				"value": "gerrit"
+			}],
+			"widgetOptions": {
+				"legend": {
+					"position": "bottom"
+				},
+				"view": "timeSeries",
+				"stacked": false,
+				"rowsPerPage": 50,
+				"widgetsPerRow": 2
+			},
+			"period": 300,
+			"splitBy": "",
+			"region": "us-west-2",
+			"title": "Agent Utilization"
+		}
+	}, {
+		"height": 15,
+		"width": 24,
+		"y": 27,
+		"x": 0,
+		"type": "explorer",
+		"properties": {
+			"metrics": [{
+				"metricName": "VolumeReadOps",
+				"resourceType": "AWS::EC2::Volume",
+				"stat": "Sum"
+			}, {
+				"metricName": "VolumeWriteOps",
+				"resourceType": "AWS::EC2::Volume",
+				"stat": "Sum"
+			}, {
+				"metricName": "BurstBalance",
+				"resourceType": "AWS::EC2::Volume",
+				"stat": "Average"
+			}],
+			"labels": [{
+				"key": "Name",
+				"value": "jenkins-agent"
+			}, {
+				"key": "Name",
+				"value": "gerrit"
+			}],
+			"widgetOptions": {
+				"legend": {
+					"position": "bottom"
+				},
+				"view": "timeSeries",
+				"stacked": false,
+				"rowsPerPage": 50,
+				"widgetsPerRow": 2
+			},
+			"period": 300,
+			"splitBy": "",
+			"region": "us-west-2",
+			"title": "Devops Disk"
+		}
+	}]
+  }

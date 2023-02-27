@@ -1,0 +1,161 @@
+{
+	"widgets": [{
+		"height": 6,
+		"width": 12,
+		"y": 6,
+		"x": 0,
+		"type": "metric",
+		"properties": {
+			"metrics": [
+				[{
+					"expression": "m3+m4",
+					"label": "Total Disk Ops",
+					"id": "e1",
+					"region": "us-west-2"
+				}],
+				["AWS/EBS", "VolumeReadOps", "VolumeId", "vol-078473d9d77201b53", {
+					"id": "m3"
+				}],
+				[".", "VolumeWriteOps", ".", ".", {
+					"id": "m4"
+				}]
+			],
+			"region": "us-west-2",
+			"title": "Studio Disk Ops",
+			"copilot": true,
+			"view": "timeSeries",
+			"stacked": false,
+			"stat": "Sum",
+			"period": 300,
+			"yAxis": {
+				"left": {
+					"min": 0
+				}
+			},
+			"legend": {
+				"position": "bottom"
+			}
+		}
+	}, {
+		"height": 6,
+		"width": 12,
+		"y": 0,
+		"x": 0,
+		"type": "metric",
+		"properties": {
+			"view": "timeSeries",
+			"stacked": false,
+			"metrics": [
+				["AWS/EC2", "CPUUtilization", "InstanceId", "i-0b72cc317b56cfbda"]
+			],
+			"region": "us-west-2",
+			"title": "Studio CPU",
+			"period": 300,
+			"yAxis": {
+				"left": {
+					"min": 0,
+					"max": 100
+				}
+			}
+		}
+	}, {
+		"height": 6,
+		"width": 12,
+		"y": 6,
+		"x": 12,
+		"type": "metric",
+		"properties": {
+			"view": "timeSeries",
+			"stacked": false,
+			"metrics": [
+				["AWS/EC2", "NetworkIn", "InstanceId", "i-0b72cc317b56cfbda"],
+				[".", "NetworkOut", ".", "."]
+			],
+			"region": "us-west-2",
+			"title": "Studio network",
+			"period": 300
+		}
+	}, {
+		"height": 6,
+		"width": 12,
+		"y": 18,
+		"x": 0,
+		"type": "metric",
+		"properties": {
+			"metrics": [
+				["CWAgent", "disk_used_percent", "path", "/", "InstanceId", "i-0b72cc317b56cfbda", "ImageId", "ami-0f1888aafe303afea", "InstanceType", "m5a.xlarge", "device", "nvme0n1p1", "fstype", "ext4"]
+			],
+			"view": "timeSeries",
+			"stacked": false,
+			"region": "us-west-2",
+			"title": "Disk Used Percent",
+			"period": 300,
+			"yAxis": {
+				"left": {
+					"min": 80,
+					"max": 100
+				}
+			},
+			"liveData": true,
+			"stat": "Average"
+		}
+	}, {
+		"height": 2,
+		"width": 6,
+		"y": 12,
+		"x": 12,
+		"type": "alarm",
+		"properties": {
+			"title": "",
+			"alarms": ["arn:aws:cloudwatch:us-west-2:939375546786:alarm:Production Server disk full"]
+		}
+	}, {
+		"height": 6,
+		"width": 12,
+		"y": 12,
+		"x": 0,
+		"type": "metric",
+		"properties": {
+			"metrics": [
+				[{
+					"expression": "SELECT AVG(VolumeQueueLength) FROM \"AWS/EBS\" WHERE VolumeId = 'vol-078473d9d77201b53'",
+					"label": "Disk Queue Length",
+					"id": "q1",
+					"region": "us-west-2"
+				}]
+			],
+			"region": "us-west-2",
+			"title": "Studio Disk Volume Queue Length (Avg)",
+			"copilot": true,
+			"view": "timeSeries",
+			"stacked": false,
+			"stat": "Sum",
+			"period": 300,
+			"yAxis": {
+				"left": {
+					"min": 0
+				}
+			},
+			"legend": {
+				"position": "bottom"
+			}
+		}
+	}, {
+		"height": 6,
+		"width": 12,
+		"y": 0,
+		"x": 12,
+		"type": "metric",
+		"properties": {
+			"metrics": [
+				["CWAgent", "mem_used_percent", "InstanceId", "i-0b72cc317b56cfbda", "ImageId", "ami-0f1888aafe303afea", "InstanceType", "m5a.xlarge"]
+			],
+			"view": "timeSeries",
+			"stacked": false,
+			"region": "us-west-2",
+			"title": "mem_used_percent",
+			"period": 300,
+			"stat": "Average"
+		}
+	}]
+}
